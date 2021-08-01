@@ -18,10 +18,14 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
+        'type' => User::TYPE_USER,
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'verified_at' => now(),
+        'password' => bcrypt('123456'), // password
+        'mobile' => '+989' . random_int(1111, 9999) . random_int(11111, 99999),
+        'avatar' => null,
+        'website' => $faker-> url,
+        'verify_code' => null,
     ];
 });
